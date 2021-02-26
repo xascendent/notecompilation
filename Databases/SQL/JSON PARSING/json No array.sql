@@ -1,0 +1,73 @@
+DECLARE @jsonMessage NVARCHAR(MAX);
+
+
+SET @jsonMessage = '{ "data": [{
+	"user_id": "646",
+	"user_name": "ddemarcotest",
+	"study_code": "SKOAP-Test",
+	"registered": "2020-09-08 17:51:58",
+	"latest_login": "2020-09-08 17:53:44",
+	"latest_usage": "2020-09-08 19:30:12",
+	"current_week_scheduled": "1",
+	"program_completed": null,
+	"program_length_used": "02:24:44",
+	"tutorial_accessed_first": "2020-09-08 17:52:21",
+	"tutorial_accessed_last": "2020-09-08 18:14:04",
+	"tutorial_completed": "2020-09-08 18:10:16",
+	"session_highest": "1",
+	"session_highest_screen_highest": "23",
+	"session_highest_accessed_first": "2020-09-08 17:51:59",
+	"session_highest_accessed_last": "2020-09-08 19:30:12",
+	"session_1_completed": null,
+	"session_2_completed": null,
+	"session_3_completed": null,
+	"session_4_completed": null,
+	"session_5_completed": null,
+	"session_6_completed": null,
+	"session_7_completed": null,
+	"session_8_completed": null,
+	"confidence_most_recent_date": null,
+	"confidence_most_recent_value": null,
+	"confidence_most_recent_week": null,
+	"skill_practice_most_recent_date": "2020-09-08 00:00:00",
+	"skill_practice_most_recent_skill": "71",
+	"skill_practice_most_recent_value": "1",
+	"skill_practice_most_recent_week": "1"
+}]}'  ;
+
+
+SELECT *
+FROM OPENJSON ( @jsonMessage, '$.data' )  
+WITH (   
+      [user_id] varchar(MAX)  '$.user_id' ,
+	[user_name] varchar(MAX)  '$.user_name',
+	[study_code] varchar(MAX)  '$.study_code',
+	[registered]  varchar(MAX)  '$.registered',
+	[latest_login]  varchar(MAX)  '$.latest_login',
+	[latest_usage]  varchar(MAX)  '$.latest_usage',
+	[current_week_scheduled]  varchar(MAX)  '$.current_week_scheduled',
+	[program_completed]  varchar(MAX)  '$.program_completed',
+	[program_length_used]  varchar(MAX)  '$.program_length_used',
+	[tutorial_accessed_first]  varchar(MAX)  '$.tutorial_accessed_first',
+	[tutorial_accessed_last]  varchar(MAX)  '$.tutorial_accessed_last',
+	[tutorial_completed]  varchar(MAX)  '$.tutorial_completed',
+	[session_highest]  varchar(MAX)  '$.session_highest',
+	[session_highest_screen_highest]  varchar(MAX)  '$.session_highest_screen_highest',
+	[session_highest_accessed_first]  varchar(MAX)  '$.session_highest_accessed_first',
+	[session_highest_accessed_last]  varchar(MAX)  '$.session_highest_accessed_last',
+	[session_1_completed]  varchar(MAX)  '$.session_1_completed',
+	[session_2_completed]  varchar(MAX)  '$.session_2_completed',
+	[session_3_completed]  varchar(MAX)  '$.session_3_completed',
+	[session_4_completed]  varchar(MAX)  '$.session_4_completed',
+	[session_5_completed]  varchar(MAX)  '$.session_5_completed',
+	[session_6_completed]  varchar(MAX)  '$.session_6_completed',
+	[session_7_completed]  varchar(MAX)  '$.session_7_completed',
+	[session_8_completed]  varchar(MAX)  '$.session_8_completed',
+	[confidence_most_recent_date]  varchar(MAX)  '$.confidence_most_recent_date',
+	[confidence_most_recent_value]  varchar(MAX)  '$.confidence_most_recent_value',
+	[confidence_most_recent_week]  varchar(MAX)  '$.confidence_most_recent_week',
+	[skill_practice_most_recent_date]  varchar(MAX)  '$.skill_practice_most_recent_date',
+	[skill_practice_most_recent_skill]  varchar(MAX)  '$.skill_practice_most_recent_skill',
+	[skill_practice_most_recent_value]  varchar(MAX)  '$.skill_practice_most_recent_value',
+	[skill_practice_most_recent_week]  varchar(MAX)  '$.skill_practice_most_recent_week'
+ );
