@@ -1,0 +1,75 @@
+
+GetStart:
+- For this course we have to setup a Redshift Cluster (GOOD NOTE. always tear down your instances when you're done because you only get so much free time)
+- for aginity to work we need to whitelist our IP or we can't connect
+
+
+TOOLS:
+- aginity Workbench allows you to connect to DB's and Redshift.  SQL Workbench will also all you to connect to Redshift but it doesn't have as many features.
+
+
+Aginity:
+- When it connects to Redshift it will talk to the leader node
+
+
+Redshift:
+- Has sample data already stored on S3 that you can use to populate your database tables.  Looks like creating a Redshift database is about the same as a SQL (Create table)
+- Redshift can auto populate the data from the files....
+- Redshift doesn't like the ; after the statements
+- We have to setup a Node in Redshift in order to use spectrum
+
+To load data from S3:
+- You need to give your user a read S3 policy that runs the Redshift instances then copy the ARN from the user and add to the copy command
+Command to execute:   copy users from 's3://awssampledbuswest2/tickit/venue_pipe.txt' credentials 'aws_iam_role-<ARNHERE>' delimiter '|' region 'us-west-2'  You will run this 
+from the query window so f5 will populate your database.. pretty sweet.
+
+codes for dataload: \t (horizontal tab) 
+
+ATHENA 
+- Only works on S3 NOT!!! a datawarehouse like Redshift
+
+
+Glue:
+
+- 3 basic components of Glue
+    1. Data Catalog (discover: hive compatible, integrated with AWS services, Auto crwaling) *discover
+    2. Job Authoring (auto-gens ETL code, python and apache, spark, edit, debug, and share) *develop
+    3. Job executions (deploy serverless execution, flexible scheduling, monitoring and alerting) *deploy
+
+Glue data catalog is the perfered meduim even if Athena has a cat one day evrythign will be from here
+
+Data Lake -> to S3 (ETL can run here to also conform the data to what you need) -> AWS Glue Crawler -> data Catalog -> athen, Redshift, AWS EMR -> quicksite
+
+Crawlers -> builds and updates schema used for querying 
+
+
+HOW DO YOU BUILD ON GLUE with multi devs and see your shit work?
+- Looks like You hook Zeppelin notebooks to the catalog and you can see metircs??? or connect to a dev end point and you fire sql against this??  course conten t 17 - AWS Glue -Architecture
+(pycharm, zeppelin can connect to the aws end points)
+
+
+ATHENA and REDSHIFT SPECRUM 
+- Can directly query your aws s3 data lake using the aws glue data catalog
+
+
+TERMS:
+- AWS GLUE DATA Catalog : only ONE per account.. contains table definitions, job definitions, and control info for AWS Glue evn
+- Classifier - determines the schema of your data.  AWS glue provides classifiers for: csv, json, avro, xml. or write your own
+- Glue can create scala or Pyspark scripts for etl operations
+- crawler : program that connects to a data sotre and sets the metadata for the glue data catalog  -they infer the schema-
+- DEVELOPMENT ENDPOINT - AN ENVIROMENT THAT YOU CAN USE TO DEVELOP AND TEST YOUR AWS GLUE scripts.. runs on SPARK
+
+
+COSTS:
+- ETL charges while you use it
+- Devlopment end points charge you no matter what so you will want to take these down
+- Data catalog free for 1 million objects stored and 1 million read
+- crawler costs money as well
+
+
+Setup:
+- Create new Role:  MyDefaultGlueServiceRole
+    add: AWS S3 FullAccess
+    add: aws glues service role
+
+
