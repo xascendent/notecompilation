@@ -1,0 +1,59 @@
+airflow: orchestrate and execute your tasks at the right time, in the right order
+
+Benefits: dynamic data pipelines, scalability (as many tasks as you want), good UI, extensibility (can customize your instance of airflow)
+
+
+Components:
+    - Web Server   
+                -flask sever with Gunicorn service the UI  (Gunicorn is a Python WSGI HTTP Server that uses a pre-fork worker model. By using gunicorn, you'll be able to serve your Flask application on more than one thread)
+    - Scheduler
+                - daemon in charge of scheduling workflows
+    -Metastore
+                - Database where metadata is stored (uses SQL Alch for connections)
+    -Executor   
+                - Class defining how your tasks should be executed (also can execute in a Cluster)
+    -worker
+                - Process to execute the tasks
+
+
+Concepts:
+    DAG : is a data pipeline in airflow.  
+    Operator : a task that you want to acchive  (connect to a db, or insert into ) 3 types: Action Operators, Transfer operators, Sensor Operators (wait for file to land)
+    Op Task: when you exec a task it becomes a task instance.
+
+Airflow Is not: NOT A data streaming solution! and neither a data processing framework.. so don't process terbytes of data.  So if you want to process data every second don't use
+airflow.  It's not spark... if you need to process LARGES amounts of data invoke a spark job
+
+
+One Node Architecutre: Web server -> metastore  and scheduler and executor and queue pulls from metastore .. 
+Multi nodes arch (Celery):
+Node 1 : web server, scheduler, executor
+Node 2 : meta store and queue 
+Worker Nodes (airflow workers pull data from the queue from Node 2)
+
+Folder Dags : where you put the pipelines  (add dag.py)
+
+
+airflow uses sqlite
+
+
+just a quick note.
+
+
+
+
+
+
+
+-------------------------------------------Docker setup
+- add docker container?
+- VS code install Remote -SSH  (remote-ssh  and add new ssh:  ssh) 2:56 section 2 part 9
+-- Term:  python3 -m venv sandbox
+-- Term:  source sandbox/bin/activate   
+-- Term  pip install wheel   (used by airflow)
+-  Term  pip3 install apache-airflow=   (installs to vm)
+
+
+
+
+

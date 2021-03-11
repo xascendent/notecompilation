@@ -1,0 +1,6 @@
+Auto Sort
+
+Scroll into selected
+
+
+cell.scrollintoview();
