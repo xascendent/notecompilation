@@ -1,0 +1,41 @@
+1. docker --version
+2. see all local docker images. docker image ls
+
+3. List all containers (only IDs) docker ps -aq.  to see running containers docker ps
+4. Stop all running containers. docker stop $(docker ps -aq) or to stop 1: docker ps to get the container id / docker stop container id
+5. Remove all containers. docker rm $(docker ps -aq)
+6. Remove all images. docker rmi $(docker images -q)
+7. Remove ONE image: docker images -a  THEN docker rmi apache/airflow  NOTE: you might have to check to see if the container is there docker ps -a IF it is then docker rm <container id>
+8. pull image example : docker pull mcr.microsoft.com/mssql/server:2017-latest
+9. Start a mssql-server instance using the latest update for SQL Server 2017
+   
+```
+docker run --name localSqlDev -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=FahimIsGod!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest
+```
+-p ports exposed.  outside/container 
+Connect via powershell
+1. docker ps to get the container id
+```
+docker exec -it <container_id|container_name> /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P FahimIsGod!
+```
+2. check sql: select * from sys.databases go <enter> Or bring up a SSMS  localhost, 1433
+
+OR install one from pull note this will also pull it if it's not downloaded as an image
+docker run --name localDevAirFlow -d -p 8080:8080 -v C:\airflow\dags:/usr/local/airflow/dags puckel/docker-airflow webserver
+http://localhost:8080/admin/
+
+Now get Jenkins:
+1- Create Volume for jenkins data
+	docker volume *shows volumes info
+	docker volume create <Name> creates a volume
+	docker volume ls shows volumes
+
+
+Docker
+------------
+first install docker
+
+
+sqlTest : 59945986f885d6f5d3fdf213ee6d81aba9b66616
+
+sonar-scanner.bat -D"sonar.projectKey=SqlTesting" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=59945986f885d6f5d3fdf213ee6d81aba9b66616"

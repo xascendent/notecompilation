@@ -1,0 +1,45 @@
+Lets setup the site to work with the Proxy services
+
+On dccd-webnedarc1 / IIS  CANT FIND PROXY
+
+
+
+
+
+------------------Project Over all notes
+1. Keep the project file clean and it will be stored in a personal repo in bitbucket
+2. Created a new .gitignore file for NG apps
+3. Going to create a new project and update the NG click
+4. ONCE we get the proxy in place we will push the site up to make sure it's always working this includes the API layer
+5. Set Cors
+---------------------
+
+-------------------publish
+1. publish to Proxy  dccd-webnedarc1 : clms  run : ng build --prod
+2. copy the files and check proxy  https://devclms.nedarc.org/
+--------------------
+
+
+Update NG.  
+1. Open visual studio code
+2. Open term 
+3. and add: npm install -g @angular/cli  *as of this time the latest was 11.0.6  I instaled in the global.. didn't mean to (11.2.4).. npm i @angular/cli  
+
+
+Create a new NG Project
+1. ng n clms
+2. use scss
+3. cd into clms
+4. ng server
+5. publish to Proxy  dccd-webnedarc1 : clms  run : ng build --prod
+6. copy the files and check proxy  https://devclms.nedarc.org/
+7. add materials  in term : ng add @angular/material  and ng add @angular/cdk
+8. add a new material and import in the app modual to make sure it works.
+
+
+Add a site Nav to the project after the folders are Created
+1. in the term: ng generate @angular/material:navigation siteNavigation
+2. create the core menu items 
+
+
+

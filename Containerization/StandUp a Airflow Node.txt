@@ -1,0 +1,32 @@
+OK maybe we're not ready to build out our own airflow server in docker.
+1. on the docker site: https://hub.docker.com/r/apache/airflow  you will find the container we will use
+2. run powershell as admin and make sure docker is running
+3. run docker pull apache/airflow
+4. open docker click on images
+5. click on run under optional settings
+    - container_name: Apache/Airflow
+    -
+
+
+Puckel/docker-airflow *note the [] is just the command don't include the []
+1. run powershell as admin and make sure docker is running
+2. run [docker pull apache/airflow]
+3. run [docker run -d --name airflow -p 8080:8080 puckel/docker-airflow webserver]
+4. the breakout of that run command is -d (display the container id), --name (the conainter name in docker), -p (local port to map to container port) the rest is puckels container info
+5. in a browser goto [localhost:8080]  you should see airflow
+
+
+Now we have to look at our Text airflow document and see if we can setup ssh etc  *LOOKS LIKE WE DON"T WANT THIS EITHER
+
+to install SSH  can you SSH into a container?
+1- in VSCode add the addon   [Remote - SSH]
+2- after install hit F1
+3- type [remote-ssh]
+4- add new host
+5- type [ssh -p 8080 airflow@localhost]  
+
+
+
+Looks like we will want to build out a volume that will map to a directory on our localhost.  This way we can just add crap there.
+1- docker run -d --name airflow -p 8080:8080 -v C:\Users\jbrumett\Documents\_Airflow\Testing\dags\:/usr/local/airflow/dags  puckel/docker-airflow webserver
+2- when docker asks to share click yes
