@@ -1,0 +1,35 @@
+setup
+-----------
+1- install Visual studio
+2- install SSDT (data tools)
+3- create a new database project
+4- import or create a database
+5- create a security folder for schemas
+6- for each schema in the security folder create a new root folder with the same name
+7- under that root schema folder add subfolders like tables, stored procedures etc and add each element under that folder 
+8- when you create your first sproc right click and say create unit test
+9- in the New project name: <projectname>_UnitTests
+10- in the Create new class: <schema>_Tests.cs
+11- to add new tests right click the sproc or function and select create unit test
+12 - under project select the <projectname>_UnitTests 
+13- if it's an existing schema that has tests select Insert unit test: <schema>_Tests OR create a new one <schema>_Tests.cs
+14- when you BUILD the project you can create a publish.xml file that will NOT save to BIT bucket.  So don't lose it or you will have to create a new one
+
+
+testing
+--------------
+1- select the <schema>_Tests and config the test.  we have pre-test (setup and vars), post-test (tear down), and test
+
+
+adding data
+---------------
+1- we will create sprocs to do this under a data schema.
+2- the sprocs will be invoked on a post load event and the post will remove the sprocs and the data schema 
+3- to create a Post deployment script add a new item to the project
+4- select "User Scripts"
+5- select post-deployment script 
+6- add a @rebuild flag and a if.  This way you don't have to always rebuild all the data
+
+key NOTES:
+--------------
+1- ALWAYS add a CONSTRAINT name to your tables  this will fix a ton of issues  so example: LoadDate DATETIME CONSTRAINT DF_Users_LoadDate DEFAULT(GETDATE()),
