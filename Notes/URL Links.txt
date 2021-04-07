@@ -1,0 +1,7 @@
+https://www.sqlshack.com/sql-unit-testing-with-ssdt-sql-server-data-tools/
+https://docs.microsoft.com/en-us/sql/ssdt/using-test-conditions-in-sql-server-unit-tests?view=sql-server-ver15
+https://sqlplayer.net/2019/10/script-deploy-the-data-for-database-from-ssdt-project/
+https://docs.microsoft.com/en-us/sql/ssdt/scripts-in-sql-server-unit-tests?view=sql-server-ver15
+https://docs.microsoft.com/en-us/sql/ssdt/using-test-conditions-in-sql-server-unit-tests?view=sql-server-ver15
+
+https://www.sqlservertutorial.net/sql-server-stored-procedures/sql-server-raiserror/
