@@ -1,0 +1,17 @@
+steps:
+1- create a new repo in bitbuck and make it blank.
+2- clone the empty project down to your local rig
+3- All projects will now be: org.nedarc.<feature>
+4- copy the .gitignore to the new project in the same location as .git
+5- create a new empty project in .net 5 .  In our case it will be a class library and the project name for this example will be: org.nedarc.authentication
+6- point the location to the cloned empty repo space on the rig
+7- delete the Class1 file and add a new project called NUnit 
+8- in the org.nedarc.authentication.tests click on the dependancies add project and pick org.nedarc.authentication
+9- save the project and close
+10- since we have tortoise git installed right click on the root folder of the project and upload all the files.. 
+    a- push the .gitignore file only first
+    b- push the others
+11- now we have to create a fork in our main repo goto: https://stash.utahdcc.org/stash/projects/NEDARCSW/repos/nedarc-clms_authentication/browse
+12- create a fork put it in the same project repo and call it: Nedarc-Clms_Authentication-Fork
+13- now delete the main project repo and download the fork
+14- MOVE ON to step 2 create a new Service 

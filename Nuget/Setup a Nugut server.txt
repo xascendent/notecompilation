@@ -1,0 +1,150 @@
+Links:
+https://adamtheautomator.com/nuget-server/
+https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-visual-studio?tabs=netcore-cli
+https://www.youtube.com/watch?v=bCoVexnomuk
+
+1- Setup a Web Server
+2- to install all the dependancies in powershell on the webserver run: Install-WindowsFeature Web-Server,Web-Net-Ext45,Web-Asp-Net45,Web-ISAPI-Filter,Web-ISAPI-Ext -IncludeManagementTools
+3- In VS create a new project called NugetServer ASP.NET Framework Web App *Must be empty and not core.
+4- In the VS Project right click the project and select manage Nuget packages
+5- Install NuGet.Server from Nuget
+6- Goto the webconfig file check to make sure the debug tag wasn't duplicated
+it will look like this:
+  <compilation debug="true" strict="false" explicit="true" targetFramework="4.7.2" />
+    <!-- maxRequestLength is specified in Kb -->
+    <httpRuntime targetFramework="4.7.2" maxRequestLength="30720" />
+    <compilation debug="true" targetFramework="4.6" />  <---delete this the oldest framework one
+
+7- Run the project to check for errors  if no errros you should see this:
+You are running NuGet.Server v3.4.1.0
+
+Click here to view your packages. 
+
+8- Go to IIS and create a new site called NugetServer and start the site DONT ADD A DEFAULT.ASPX or it will error!
+
+9- PUBLISH to server folder
+
+10- On a local browser go to the site: in my case its http://testjbrumett1:8081/
+
+11- we're going to have permission errors when viewing the packages lets setup the api key. key: 00C9841845A7536A7744BBDA41830FA1
+
+12- Goto the server and open up the config and go here and add the key: 
+ Set the value here to allow people to push/delete packages from the server.
+    NOTE: This is a shared key (password) for all users.
+    -->
+    <add key="apiKey" value="" />
+    <!--
+
+
+-------------
+DONT FORGET!
+Must install: Install-WindowsFeature Web-Server,Web-Net-Ext45,Web-Asp-Net45,Web-ISAPI-Filter,Web-ISAPI-Ext -IncludeManagementTools
+on the server 
+
+
+
+Now lets create a package to add to this 
+------------------------
+1- Open VS2019
+2- New project -> Class libarary Core/.net 
+3- new TestLib pick Net 5
+4- Lets Create a basic service example
+  a- delete the class1
+  b- create services, models, interface folders
+  *Make sure to make them all public and don't forget the imports
+  c- create a new interface called ITest 
+  d- create a new test class and give it a first name, last name        public string FirstName { get; set; }       public  string LastName { get; set; }
+  e- now go back to the ITest and make a interface that returns a first last name object.  don't forget the import.  Test GetTest(string first, string last);
+  f- now crate our service class and import our interface call it TestService.  In our example we will have a some private elements and our implementation for the interface
+  CODE:
+     private string _first;
+        private string _last;
+
+        public Test GetTest(string firstName, string lastName)
+        {
+            _first = firstName;
+            _last = lastName;
+            return PrivateTestCall();
+        }
+
+        private Test PrivateTestCall()
+        {
+            return new Test()
+            {
+                FirstName = _first,
+                LastName = _last
+            };            
+        }
+
+    g- now lets create our Unit Test to make sure the project works. on the solution right click and add a new project and find NUnit project and add that
+    h- in our UnitTests project add the output of the main TestLib in our refs
+    i- now import our TestLib project to the UnitTest1 class using TestLib.Interfaces; using TestLib.Models; using TestLib.Services;
+    j- now add this test
+    CODE:
+      [Test]
+        public void ServiceTest()
+        {
+            ITest itest = new TestService();
+            var rType = itest.GetTest("john", "brumett");
+            Assert.AreEqual("john", rType.FirstName);
+        }
+    k- Now lets run the test to make sure it works. click tests -> run all test  Evertyhing should pass.
+    l- Now lets add a Nuget package for this lib... oh boy.  
+      Go into the main project and right click and select package and change some of the values and select "Generate NuGet package on build"
+      ALSO package Id: HAS to be be unique for all Projects.  Common naming is: company.product.feature so lets name ours DCC.Clms.Test
+      ALSO add Repo URL, and tags.  Each tag is sperated by a comma
+    m- Right click on the project and click pack  NOTE:
+    If you don't see the Pack command, your project is probably not an SDK-style project and you need to use the nuget.exe CLI. Either migrate the project and use dotnet CLI, or see Create and publish a .NET Framework package instead for step-by-step instructions.
+    n- change the release to release not debug and click pack
+    
+    OK.. We need a <servername>.cache.bin  and the SITE DID NOT create it on startup.  I went to my local machine in my project that created the server and found the cache.bin file
+    under my packages folder (the one that is for nuget) copied that to the server and changed the name to testjbrumett1.cache.bin  I also added these in the webconfig file:
+    - <add key="packagesPath" value="\Packages\" />
+    - <add key="allowOverrideExistingPackageOnPush" value="true" />
+    and recycled the site 
+  
+    NOW: we download the new nuget.exe from the link that the upload on the server says once that's donwloaded (we will have to put this in our path at some point i copied the exe to
+    the release folder).  THEN in powershell run this command: ./nuget.exe push DCC.Clms.Test.1.0.0.nupkg 00C9841845A7536A7744BBDA41830FA1 -Source http://testjbrumett1:8081/nuget
+
+    NOW: we can create a new project and go to nuget and create a new server to point to.  make sure the url is: http://testjbrumett1:8081/nuget  or it will not pull since the APIs no longer are used
+    they moved to nuget as the root.  Click browse and you should see the file! and install!!!
+
+
+    OMG!
+
+    NEXT:
+    1- lets see if our service works in the consol app 
+    2- Go to the program and add a using statement
+    using TestLib.Interfaces;
+using TestLib.Models;
+using TestLib.Services;
+
+ static void Main(string[] args)
+        {
+            ITest itest = new TestService();
+            var rType = itest.GetTest("john", "brumett");
+            
+
+            Console.WriteLine($"Hello World! i'm {rType.FirstName} {rType.LastName}");
+            var close = Console.ReadLine();
+        }
+
+        and run.... and I FUCKING DUCKING DID IT!!!!
+
+ok. so it looks like we need to name our projects different for them to show... 
+use:
+org.nedarc.<feature>
+
+And we can push these to sonatype!!
+
+
+
+
+
+    
+    
+
+
+
+
+
