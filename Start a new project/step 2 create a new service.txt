@@ -1,1 +1,65 @@
+https://www.codemag.com/article/1312041/Using-Active-Directory-in-.NET
+https://docs.microsoft.com/en-us/previous-versions/bb384378(v=vs.90)?redirectedfrom=MSDN
+https://docs.microsoft.com/en-us/dotnet/api/system.directoryservices.accountmanagement?view=dotnet-plat-ext-5.0
+https://stackoverflow.com/questions/10853995/groupprincipal-getmembers-fails-when-group-or-child-group-if-recursive-contain
+
+
 MAKE SURE STEP 1 "step 1 bitbucket repo and project startup.txt is complete!!!
+
+1- open our new auth project fork in vs2019
+2- Delete the class1 if you haven't and add 3 folders: Interfaces, Models, Services 
+3- Create a new interface called IAuthentication and make it public
+4- Create a new Model called UserRequest make it public 
+      public string userName { get; set; }
+      public string userPassword { get; set; }
+5- Import using org.nedarc.authentication.Models; into our IAuthentication interface and make a new method: bool LoginRequest(UserRequest userRequest);
+6- Create a new service class: Authentication.cs and make it public
+7- add this code to the class:
+
+   public class Authentication : IAuthentication
+    {
+        public bool LoginRequest(UserRequest userRequest)
+        {
+            return true;
+        }
+    }
+
+8- Got to the tests and wire up a new test.  Also rename the UnitTests1 to AuthenticationTests
+9- In our setup function in the tests add:
+using NUnit.Framework;
+using org.nedarc.authentication.Interfaces;
+using org.nedarc.authentication.Models;
+using org.nedarc.authentication.Services;
+
+namespace org.nedarc.authentication_tests
+{
+    public class AuthenticationTests
+    {
+
+        IAuthentication _auth;
+
+        [SetUp]
+        public void Setup()
+        {
+            _auth = new Authentication();
+        }
+
+        [Test]
+        public void Test1()
+        {
+            Assert.IsTrue(_auth.LoginRequest(new UserRequest() { }));            
+        }
+    }
+
+10- run the test it should pass lets save and commit.  as a good check since this is our first commit from VS lets make sure it saved to the fork.
+11- lets add the rest of the code to the auth to check the ldap
+12- add  a new folder called: Infrastructure
+13- add a new class called AdContext in the Infrastructure folder
+14- add a nuget ref to System.DirectoryServices and System.DirectoryServices.AccountManagement 
+
+***lots changed from above we broke the classes out to two services one for AdLoginContext and the other for AdApplicationUsers  pull bit bucket code.. 
+CODE:
+
+
+15- Lets add our tests to check the above code but first lets commit and save
+

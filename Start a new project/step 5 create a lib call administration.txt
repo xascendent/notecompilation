@@ -1,0 +1,10 @@
+This is PART 2 of what we need to do for the NEDARC API  Part I allows us to talk to the AD and see if the user is vaild and pull a list of users assigned to a AD Group
+PART 2 will focus on getting a user object back and upserting new users to the database
+
+
+1- once the fork is made open that up and lets add EF
+
+EF
+---------------
+1- install Microsoft.EntityFrameworkCore and Microsoft.EntityFrameworkCore.SqlServer in both the tests and main project
+2- 

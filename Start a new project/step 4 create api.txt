@@ -1,0 +1,16 @@
+STEPS 1 - 3 must be done!
+
+1- Clone the bitbucket api repo to the local
+2- add the git gitignore to the cloned folder
+3- Open up a new project and create a new asp.net core api project
+4- name it org.nedarc.clms.api
+5- pick traget framework 5.0 no auth, deselect https and create
+6- add a new testing project
+7- commit and close 
+8- create a fork of the project in bitbucket
+9- delete the main project and pull the frok 
+10- open the project and add the Default.html page 
+11- pull the authentication library into the project
+
+
+This would be part I of the API lib.  Next part is we have to add the administration Lib to pull back a user from the database

@@ -1,0 +1,17 @@
+STEP 2 MUST be completed before this step.  I will add all the code to another folder called CODE/Authentication
+
+1- In VS goto Project-> Props
+2- Click on the Package tab and add
+    a- Authors : Nedarc
+    b- company : Nedarc 
+    c- Product : Nedarc Authentication
+    d- Description : Nedarc Authentication library
+    e- Repository URL : Bit bucket URL to project
+    f- Project URL : https://wiki.utahdcc.org/confluence/display/DCCSWP/org.nedarc.authentication
+    g- tags : Nedarc Authentication
+    h- Select Generate NuGet package on build
+3- Save the project and commit
+4- change to release to build
+5- goto the release folder of the project
+6- tools -> command line powershell dev and cd into the bin\release folder 
+7- in the command line run: c:\tools\nuget.exe push org.nedarc.authentication.1.0.0.nupkg 00C9841845A7536A7744BBDA41830FA1 -Source http://testjbrumett1:8081/nuget
