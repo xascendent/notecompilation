@@ -1,0 +1,131 @@
+This project will be just to query a database and fill an Entity
+
+
+SETUP
+-------------------
+1- Create a new .net 5 class library project  (this will be called EF_POCO_Example)
+2- Delete the class1.cs file
+3- create a new solution in the project for unit tests  (EF_POCP_Example_Tests)
+4- add the EF_POCO_Example project to the dependcies of our test 
+5- Add Nuget EF to the EF_POCO_Example project *add to both solutions
+    - Microsoft.EntityFrameworkCore
+    - Microsoft.EntityFrameworkCore.SqlServer
+    - Microsoft.EntityFrameworkCore.Tools    *not needed in test project
+
+
+HOOKUP Main project TO DB
+-------------------
+1- Create a new folder in the EF_POCO_Example called contexts
+2- GOTO Tools -> NuGet Package Manager -> Package Manager Console You will now see a 
+  PM> promptIn the Package Manager Console window make SURE the default project is set to the correct project inthe default project drop download
+3- in the PM window type: *Note this will give us just 1 Entity
+Scaffold-DbContext "Server=localhost;Database=NedarcClms;user id=sa;password=sa_StrongSAPassword!;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entites -ContextDir Contexts -Context ClmsContext -Tables Clms_FrontEndConfiguration -Force
+
+3A- If we want to add another Entity to the project type:
+Scaffold-DbContext "Server=localhost;Database=NedarcClms;user id=sa;password=sa_StrongSAPassword!;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entites -ContextDir Contexts -Context ClmsContext -Tables Clms_FrontEndConfiguration, Clms_Users -Force
+
+3B- If we want to remove an Entity to the project type:
+Scaffold-DbContext "Server=localhost;Database=NedarcClms;user id=sa;password=sa_StrongSAPassword!;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entites -ContextDir Contexts -Context ClmsContext -Tables Clms_FrontEndConfiguration -Force
+THEN delete the old class 
+
+
+HOOKUP Test project to DB
+-------------------
+1- Create a new helpers folder
+2- Create a new class called TestClmsContext
+3- add this code:
+
+using Microsoft.EntityFrameworkCore;
+using EF_POCO_Example.Contexts;
+namespace EF_POCP_Example_Tests.Helpers
+{
+    class TestClmsContext
+    {
+        public ClmsContext testingDbContext { get; }
+        public TestClmsContext()
+        {
+            var options = CreateNewContextOptions();
+            testingDbContext = new ClmsContext(options);
+        }
+
+        private DbContextOptions<ClmsContext> CreateNewContextOptions()
+        {
+            var builder = new DbContextOptionsBuilder<ClmsContext>();
+            builder.UseSqlServer("Server=localhost;Database=NedarcClms;user id=sa;password=sa_StrongSAPassword!");
+            return builder.Options;
+        }
+    }
+}
+
+
+
+HOOKUP Service Layer to project 
+-------------------
+1- Create new folders called Services and Interfaces to the main project
+2- Create a new interface in the interface folder called: IClmsService  and make it public 
+3- add a using statement and point it to the Entities folder
+4- add this as a method sig: List<ClmsFrontEndConfiguration> GetConfigurations(int id);
+5- Create a new Class in the services folder called ClmsService and make it public and inheret our IClmsService
+6- add a using statement for Entites and Interfaces and create the missing interface method leave as a throw new for now
+7- FOR THIS EXAMPLE ONLY we will also add contexts to our service class and create a new ctor to get a ClmsContext
+8- Add this code to the service:
+ private readonly ClmsContext _clmsContext;
+
+        public ClmsService(ClmsContext clmsContext)
+        {
+            _clmsContext = clmsContext;
+        }
+
+
+HOOKUP Test to talk to new service layer in the project
+-------------------
+1- go to the UnitTest1 class in our testing project and add a interface, service, and Entites using statements pointing from our main project
+2- now add the Helpers using statement from our test project
+3- now add a ctor to the class and add this code:
+        IClmsService _clmsService;
+
+        public Tests()
+        {
+            _clmsService = new ClmsService(new TestClmsContext().testingDbContext);
+        }
+4- now in our Test1 method we can talk to our project add this code: _clmsService.GetConfigurations(2);
+
+
+OK NOW we can try out our EF stuff in our Service class using our Test solution as a driver
+-------------------
+1- go back to the service class
+2- in the GetConfigurations Code add:
+
+  public List<ClmsFrontEndConfiguration> GetConfigurations(int id)
+        {
+            List<ClmsFrontEndConfiguration> fe = new List<ClmsFrontEndConfiguration>();
+            using (var context = _clmsContext)
+            {
+                fe = context.ClmsFrontEndConfigurations
+                    .Where(x => x.ConfigurationId == 2).ToList();
+                
+            }
+            return fe;
+        }
+
+
+Now how do we query it?
+Q- Is there a IN statement? At this time i'm not seeing one.  Not sure If I would use it anyways
+Q- Does it do a select ALL with no where to the db?  The good news is no it doesn't!  just passes the 2 in the where to the DB!
+Q- Does a force override any virtual methods in the context?  Sadly Yes.. and you can only force the udpates.. 
+
+
+And there you have it.. Create a BASIC POCO using EF and query it.
+
+
+
+
+
+
+
+
+
+
+2- Create a new Class : NedarcClmsContext
+3- Create a new folder called Entites
+4- 

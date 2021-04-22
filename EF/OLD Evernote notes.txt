@@ -1,0 +1,457 @@
+Because You got electrolytes  ROOT
+
+Main Project for everything that is dcc||gtfo when it comes to cloud base learning.
+ From here you can pick your path. If you're going to work on the front end pick the Angular Path IF you want to work on the backend APIs pick the Python Path.
+Pick your path:
+
+- Angular Path -FrontEnd-
+- Python -Backend-
+- C# CORE 2.2 -Backend-
+
+
+    Angular Path - FrontEnd :
+To Start on a rig that has never had angular or npm install Start Here:
+
+- Start here to setup your rig
+To Create a new project Start Here:
+
+- Create your first totally awesome app Note: this will walk your through all the Angular steps if you want.
+To Add Materials to your first totally awesome project Start Here:
+
+- Add Materials to your project
+Start here to setup your rig : 
+    
+Fresh install on a new rig
+Steps on what the fuck to do:
+- Download NodeJs on your rig: https://nodejs.org/en/download/ this is what will allow your NG app to run and install stuff using npm
+- Download vsCode on your rig: https://code.visualstudio.com/download this the code editor that will you will use to build your ng app
+- Open Power Shell on your rig and type in: npm install -g @angular/cli this will download the current version of angular using npm
+- After the install is complete check the version of the cli by typing in: ng v
+That's it your ready to start building NG apps
+Whats next?
+- to create a new angular project go here: First NG Project
+Go Back to Angular Root Page: Angular Path
+Create your first totally awesome app :
+    
+Let's make a new project called... well I don't really care what you call it.
+Follow these steps:
+- open vsCode and start a new terminal
+- cd into the correct path
+- in the terminal type: ng n yourawesomesauceprojectname--style=scss NOTE: the --style is used to set the type of css that will be used. New projects should be built with scss
+- cd into the new project
+- ng serve
+- open chrome and goto: http://localhost:4200/
+- you should see your default angular page
+Whats next?
+- to add materials to your new project go here: NG Materials
+Go Back to Angular Root Page: Angular Path
+
+
+    NG Materials : 
+         
+Let's add some materials to this project.. because sure why NOT?!
+- Open the project and terminal into the root
+- Type in: have to install using ng add @angular/material NOTE: use this over npm since its now part of angular and will update easier
+- Pick a theme (pink is fine) who doesn't like pink?
+- Add HammerJs
+- Add browser animations
+- This will add materials and icons to your index.html file it will now look like:
+Now lets add all the imports
+- Follow the steps on this page: Create a new ng module for materials
+Whats next?
+- to add materials to your new project go here: NG Materials
+Go Back to Angular Root Page: Angular Path
+
+-------------------
+Add materials:
+open up the src folder and :
+- make a folder called shared in app and materials will go in there.. next step is wrong
+- add the folders: core (under the app folder), and material under (under the app folder in src folder)
+- under the material folder add a new file called: material.module.ts
+- then in the file add this code:
+import { NgModule } from '@angular/core';
+
+import { LayoutModule } from '@angular/cdk/layout';
+
+//
+// Form Controls
+//
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { MatNativeDateModule } from '@angular/material';
+// import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
+//
+// Navigation
+//
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+//
+// Layout
+//
+
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTreeModule } from '@angular/material/tree';
+
+//
+// Buttons & Indicators
+//
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+//
+// Popups & Modals
+//
+
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+//
+// Data Table
+//
+
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+
+@NgModule({
+  imports: [
+
+    LayoutModule,
+
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+
+    MatNativeDateModule,
+    // MatMomentDateModule,
+
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
+
+    MatCardModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatListModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatTreeModule,
+
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatBadgeModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+
+    MatBottomSheetModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
+
+  ],
+  exports: [
+
+    LayoutModule,
+
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
+
+    MatCardModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatListModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatTreeModule,
+
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatBadgeModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+
+    MatBottomSheetModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
+
+  ]
+
+})
+export class MaterialModule { }
+
+
+-then save
+- open the app.module.ts file and add our materialModule. 
+import { } from './material/material.module';  and add it to the imports: [
+MaterialModule
+]
+
+- open the app.component.html and add this:
+
+<button mat-stroked-button color="warn">I'm a Material Button!</button>
+
+<router-outlet></router-outlet>
+
+this will test our materials import
+
+Now you can delete the button.  We can start editing our page
+
+----
+Lets add a Nav bar
+
+- under app folder create a new folder called components
+- add a new folder under components called navigation
+- open in the new folder in a terminal 
+- ng g c masterHeader
+
+now added it to the root 
+
+next go back to the scss in the master header and add
+.bg-light {
+ background: linear-gradient(-45deg, #ee7752, #e73c7e, rgb(213, 142, 35), rgb(167, 3, 71));
+
+ background-size: 400% 400%;
+
+ -webkit-animation: Gradient 900s ease infinite;
+
+ -moz-animation: Gradient 900s ease infinite;
+
+ animation: Gradient 900s ease infinite;
+}
+
+.clearpos {
+ position: fixed;
+
+ top: 0px;
+
+ left: 0px;
+
+ width: 100%;
+}
+
+.nav-selection {
+ font-size: x-small;
+
+ transition: background-color 0.5s;
+
+ user-select: none;
+}
+
+.nav-selection:hover {
+ background-color: rgba(248, 248, 201, 0.651);
+
+ cursor: pointer;
+}
+
+@-webkit-keyframes Gradient {
+ 0% {
+ background-position: 0% 50%;
+ }
+
+ 50% {
+ background-position: 100% 50%;
+ }
+
+ 100% {
+ background-position: 0% 50%;
+ }
+}
+
+@-moz-keyframes Gradient {
+ 0% {
+ background-position: 0% 50%;
+ }
+
+ 50% {
+ background-position: 100% 50%;
+ }
+
+ 100% {
+ background-position: 0% 50%;
+ }
+}
+
+@keyframes Gradient {
+ 0% {
+ background-position: 0% 50%;
+ }
+
+ 50% {
+ background-position: 100% 50%;
+ }
+
+ 100% {
+ background-position: 0% 50%;
+ }
+}
+
+
+--add the <nav tag to the new master file
+
+--add 
+```
+npm install --save @angular/flex-layout @angular/cdk
+```
+in core:
+```
+import { FlexLayoutModule } from '@angular/flex-layout';
+```
+
+
+---------------
+C# -Backend-
+
+
+Create a new project:
+- new -> project -> Visual C# -> Web -> ASP.NET Core Web Application -> Personal\pedscreenApi
+- Name: PedScreenApi "OK"
+- Pick ASP.NET Core 2.2 -> API project remove configure https "OK" Adding a new Core project this will handle all our services
+- Right click on PedScreenApi root pick add -> Add New project -> Visual C# -> .NET Core -> Class Library(.NET Core)
+- Name: PedScreen.Core "OK"
+- Delete the Class1.cs Adding a new Core project this will handle all our Outside connections (like databases, and AD)
+- Right click on PedScreenApi root pick add -> Add New project -> Visual C# -> .NET Core -> Class Library(.NET Core)
+- Name: PedScreen.Infrastructure "OK"
+- Delete the Class1.cs Adding Unit Tests
+- Right click on PedScreenApi root and add a new folder
+- Change the name to tests
+- Right click the tests folder and add a new project -> Visual C# -> .Net Core -> NUnit Test Project(.NET Core)
+- Name: PedScreen.Tests
+- Delete the UnitTest1.cs
+- Go into the PedScreenApi project and remove ValuesController.cs
+---
+Create a local database
+- Make sure SQL express is installed and running
+- Connect to the local instance in SSMS by using localhost\SQLEXPRESS
+- Create a new database called PedScreen
+---
+Setup NuGet packages for the solution
+- Go into the PedScreens.Test Project and add Shouldly
+- Go into the PedScreen.Infrastructure and add:
+  Microsoft.EntityFrameworkCore
+  Microsoft.EntityFrameworkCore.SqlServer
+  Microsoft.EntityFrameworkCore.Tools
+- Setup EF
+  GOTO PedScreenApi web project and right click on dependencies -> Add Reference -> Add PedScreen.Core and PedScreen.Infrastructure DO NOT ADD 
+  TESTSGOTO Tools -> NuGet Package Manager -> Package Manager Console You will now see a 
+  PM> promptIn the Package Manager Console window make SURE the default project is set to PedScreen.Infrastructure otherwise EF will install in whatever was selected 
+  and you will have to delete it.
+  type in this into the 
+  
+  PM> Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=PedScreen;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir SqlContexts
+  
+  This will create the context on how EF will talk to the database serverWe will remove the onConfig UseSqlServer in a later step.
+
+
+
+
+---
+OK on to setting up the folders for our shiz
+
+```
+* Go into the Core project and add these folders to the root (Models, Helpers, Interfaces, Services)* Go into the Infrastructure project and add these folder to the root (Entities)
+```
+
+---
+OK on to test driven design
+
+```
+* So we will do test driven design on this project to give us as much code coverage as possible.. I'm still new to this test driven thing so we will make mistakes along the way.* Go into the PedScreen.Tests project and add references to PedScreen.Core, PedScreen.Infrastructure, and PedScreenApi* Well since we're building admin tools for this release lets add a new folder call AdministrationTests* Add a new folder Called AdministrationTestMocks* Under the AdministrationTest add the folders: Api, Core, and Infrastructure
+```
+Now we can start coding.. YATA! * In the AdministrationTest -> Infrastructure (Right click and add a new class) Name: AdministrationContext * Add these using statements: using PedScreen.Infrastructure; using NUnit.Framework; using Shouldly;
+```
+* Now add these Test under the class AdministrationContext:
+```
+` [Test] public void AdministrationContext_GetSites() {
+```
+    }
+```
+` * With our first test in place lets fix our database stuff. HA you thought you were going to write a bunch of C# code.. HOLD YOUR HORSES!
+---
+Almost C# Core stuff
+
+```
+* Go to the PedScreen.Infrastructure and open up the PedscreenContext class.* Copy the `optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PedScreen;Trusted_Connection=True;");`* Comment out the warning and optionsbuilder and save* Go back to your Tests and under the Root add another folder called Config and add a new class called TestConfig
+```
+Here is the code you will need to add: ` using Microsoft.EntityFrameworkCore; using PedScreen.Infrastructure.Contexts;
+namespace PedScreen.Tests.Config { class TestConfig { public PedScreenContext TestingDbContext { get; }
+```
+    public TestConfig()    {        var options = CreateNewContextOptions();        TestingDbContext = new PedScreenContext(options);    }    private DbContextOptions<PedScreenContext> CreateNewContextOptions()    {        var builder = new DbContextOptionsBuilder<PedScreenContext>();        builder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PedScreen;Trusted_Connection=True;");        return builder.Options;    }}
+```
+} `
+- In a nutshell what this does is: it will use the PedScreenContext class in your Infrastructure calls and pass the correct database connection (this will come from a config file in a bit). This now allows us to inject the correct database info into our tests and make calls to the database.
+- Now go back to our AdministrationContext class we setup for testing.
+- add this using statement: using PedScreen.Tests.Config;
+- In your GetSites method add this code: //test repo directly TestConfig dbContext = new TestConfig();
+- Now lets make sure our tests will work. Click on Tests -> Windows -> Test Explorer
+- Open up the explorer and find the AdministrationContext_GetSites and run the test. you can right click on the name and click run test. You should get a green check!
+- WE HAVE OUR FIRST TEST AND CODE WROTE GOOD JOB! Go take a break for a month and come back and do this later.
+- HMMMM.. ok so you want to cont.. lets do it.
+- Well the overall process of a request is this.. Client calls a API endpoint (in our code its called a controller). This controller will use a service in our core lib to do something.. this something most likely will be a call to a database. Which is in our Infrastructure lib.
+OK NOW WHAT?!!
+- Well right now we can either Mock stuff on what a database would return.. Or better yet build it.. Since I like coding more than mocking lets build something.
+Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=PedScreen;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir PedScreen.Models -context PedScreenContext
+Scaffold-DbContext -Connection "Server=(local);Database=DefenderRRCart;Integrated Security=True;Trusted_Connection=True;" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir RRStoreContext.Models -context RRStoreContext -Project RR.DataAccess -force force a refresh
+-OutputDir Models -Tables "Blog","Post" -ContextDir Context -Context BlogContext only add tables you want and put the context in it's own folder
+Use this one Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=PedScreen;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir PedScreen.Models -ContextDir SqlContext -Context PedScreenContext
+Use this one to refresh Scaffold-DbContext -Connection "Server=(local);Database=DefenderRRCart;Integrated Security=True;Trusted_Connection=True;" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir RRStoreContext.Models -context RRStoreContext -Project RR.DataAccess -force
+
+         
