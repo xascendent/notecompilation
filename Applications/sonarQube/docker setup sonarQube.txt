@@ -1,0 +1,16 @@
+Setup:
+
+Install Docker
+GoTo SonarQube and grab the docker pull for Community Ed this will need to be ran in powershell : docker pull sonarqube:8.6-community
+Launch Docker and go to images (this is the gui) and install and run the SonarQube image ***we will need to get better with the command line here
+Run SonarQube on port 9000 and launch in a new window : user name is admin password is admin
+Click on the Admin account and pick my account
+Click on security and create a new token I called mine cubeToken
+
+
+install Sonar Qube for C# and create a new project
+Make sure your sonarCube is running and your logged into the system on port 9000
+Click on projects and create a new project: I just gave mine a name of my-key and copied the token that was created when we set everything up from the home
+Since our projects are now all Core we will just install sonarCube to our global path to do this open powershell and run these: dotnet tool install --global dotnet-sonarscanner
+Once this is done cd into the project path we will be testing in powershell and run the following in powershell dotnet sonarscanner begin /k:"project-key" /d:sonar.login="myAuthenticationToken" *then dotnet build <path to solution.sln> *then dotnet sonarscanner end /d:sonar.login="myAuthenticationToken"
+*Found it easier to run the tests instead of the build seems to be passing when build doesn't dotnet test <path to solution.sln>
