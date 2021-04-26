@@ -1,0 +1,56 @@
+/*
+	issue datawarehouse isn't getting updated with deleted people
+*/
+use [DECAAFII_Imports]
+go
+
+merge into dbo.DECAAF_Recordings as target
+using dbo.DECAAF_Recordings_Stage as source
+on (target.Id = source.Id)
+
+when matched and target.dateupdated <> source.dateupdated then
+update set
+
+target.dateupdated = source.dateupdated
+
+
+When not matched by target then
+ insert ([Id],[ParticipantID],[SiteCode],[IsArchived],[Userid],[FilePath],[StopLight],[Findings],[isHeadache],[isChestPain],[isStressed],[isPhysicalActivity],[UserNotes],[Duration],[DateCreated],[DateUpdated],
+ [Notification_ID],[OverreadStatus],[OverreadRequestedDate],[OverreadProcessedDate],[OverreadProcessedBy],[OverreadNotes],[DisplayGain],[DisplaySpeed],[DisplayInversion],
+ [isQ5Checked],[isQ6Checked]
+ ) 
+ 
+ values (source.Id, source.ParticipantID, source.SiteCode, source.IsArchived, source.Userid, source.FilePath, source.StopLight, source.Findings, source.isHeadache, source.isChestPain, source.isstressed, source.isPhysicalActivity, source.UserNotes,
+ source.Duration, source.DateCreated, source.DateUpdated, source.Notification_ID, source.OverreadStatus, source.OverreadRequestedDate,source.OverreadProcessedDate, source.OverreadProcessedBy, source.OverreadNotes,
+ source.DisplayGain, source.DisplaySpeed, source.DisplayInversion, source.isQ5Checked, source.isQ6Checked
+ 
+ );
+ 
+ 
+ 
+ 
+ use [DECAAFII_Imports]
+go
+
+merge into dbo.DECAAF_Overreads as target
+using dbo.DECAAF_Overreads_Stage as source
+on (target.RecordingId = source.RecordingId)
+
+when matched and (target.Completed <> source.Completed or target.QcCompleted <> target.QcCompleted) then
+update set
+target.StatusID = source.StatusID,
+target.Completed = source.Completed,
+target.ResultTypeIDs = source.ResultTypeIDs,
+target.QcCompleted = source.QcCompleted,
+target.QcUsername = source.QcUserName,
+target.QcResultTypeIDs = source.QcResultTypeIDs
+
+
+When not matched by target then
+ insert ([RecordingId],[StatusID],[Started],[Completed],[Username],[ResultTypeIDs],[QcStarted],[QcCompleted],[QcUsername],[QcResultTypeIDs]
+ ) 
+ 
+ values (source.RecordingId, source.StatusID, source.Started, source.Completed, source.Username, source.ResultTypeIDs, source.QcStarted, source.QcCompleted, source.QcUserName, source.QcResultTypeIDs
+
+ 
+ );
