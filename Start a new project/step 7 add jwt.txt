@@ -1,0 +1,84 @@
+1. Nuget install:
+    - Microsoft.AspNetCore.Authentication.JwtBearer;
+    - Microsoft.IdentityModel.Tokens.Jwt;
+
+2. Open the Startup.cs and add these using:
+    using Microsoft.IdentityModel.Tokens;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using System.Text;
+
+3. under ConfigureServices add: ConfigureJwtService(services);  add under the services.AddCOntrollers();
+
+4. create this new method:
+
+        private void ConfigureJwtService(IServiceCollection services)
+        {
+            var secert = Configuration.GetSection("JwtConfig").GetSection("secret").Value;
+            var key = Encoding.ASCII.GetBytes(secert);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            })
+                .AddJwtBearer(x =>
+                {
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+        }
+
+5. Open the appsettings.json and make sure this is there:
+  "AppSettings": {
+    "oSecret": "FahimIsAGod!FahimIsAGod!FahimIsAGod!FahimIsAGod!FahimIsAGod!FahimIsAGod!",
+    "Secret": "882693BAA6C57CA672E30D042A701117",
+    "LdapServer": "iicrc.med.utah.edu",
+    "AdGroup": "NEDARC_LMS_Dev"
+  },
+
+
+6. Create a JWTService
+    - Interface with :  string GenerateSecurityToken(string userName);
+    - Service with this code:
+        using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+
+  public class JwtService
+    {
+        private readonly string _secret;
+        private readonly string _expDate;
+
+        public JwtService(IConfiguration config)
+        {
+            _secret = config.GetSection($"JwtConfig").GetSection("secret").Value;
+            _expDate = config.GetSection($"JwtConfig").GetSection("expirationInMinutes").Value;
+        }
+
+        public string GenerateSecurityToken(string userName)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, userName)
+                }),
+                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+    }
+
+7- 

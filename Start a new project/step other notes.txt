@@ -1,0 +1,23 @@
+we can do this in our startup file:
+
+
+//create contexts and interfaces
+            SharedResourcesRepository sharedRepo = new SharedResourcesRepository( 
+                new SharedResourceContext (Configuration.GetConnectionString("DefaultConnection"))._dbContext);
+            ISharedResourcesService srs = new SharedResourcesService(sharedRepo);
+
+            HospitalRepository hospRepo = new HospitalRepository(
+                new HospitalContext(Configuration.GetConnectionString("DefaultConnection"))._dbContext);
+            IHospitalService hrs = new HospitalService(hospRepo);
+
+            EmsRepository emoRepo = new EmsRepository(
+                new EmsContext(Configuration.GetConnectionString("DefaultConnection"))._dbContext);
+            IEmsService  ems = new EmsService(emoRepo);
+
+            //wire up interfaces
+            services.Add(new ServiceDescriptor(typeof(ISharedResourcesService), srs));
+            services.Add(new ServiceDescriptor(typeof(IHospitalService), hrs));
+            services.Add(new ServiceDescriptor(typeof(IEmsService), ems));
+
+
+allows us to create the interface and pass in values 

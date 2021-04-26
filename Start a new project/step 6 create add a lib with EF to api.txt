@@ -1,0 +1,32 @@
+1- in the api project add this to the appsettings.json:
+{
+  "AppSettings": {
+    "oSecret": "FahimIsAGod!FahimIsAGod!FahimIsAGod!FahimIsAGod!FahimIsAGod!FahimIsAGod!",
+    "Secret": "882693BAA6C57CA672E30D042A701117",
+    "LdapServer": "iicrc.med.utah.edu",
+    "AdGroup": "NEDARC_LMS_Dev"
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=NedarcClms;user id=sa;password=sa_StrongSAPassword!"
+  },
+
+
+2- pull down the library from the Server
+
+3- Create a new controller and add the interface to the service library
+
+4- In the startup.config add:
+
+  //setup SQL connection
+            services.AddDbContext<GovernanceContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+and the service and repo
+    //custom services
+            services.AddScoped<IGovernanceUserService, GovernanceUserService>();
+            services.AddScoped<IGovernanceRepository, GovernanceRepository>();
+
+this setups dependcies injection
+
+Note we can also talk to local services this way too.. and in the service we can create a instance as well.
+
