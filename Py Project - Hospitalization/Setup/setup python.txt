@@ -34,6 +34,27 @@ Quarantine
 7- goto github and cheeck the project NOTHING should be under main other than default project stuff.  evertyhing is under development
 
 -------------------------------------------------
+Docker Project Setup
+1- Install docker (if not already done) / update
+2- Goto : https://hub.docker.com/_/microsoft-mssql-server  and copy the pull command
+3- open Powershell as admin 
+4- paste the pull command from docker
+5- in powershell run : 
+docker run --name localSqlDev -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=FahimIsGod!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+6- go back to the docker app and you should now see localSqlDev running
+7- connect SSMS to the instance (in our case lets use azure studio) / if not installed install and update
+8- Create a new connection to our docker instance on localhost
+9- STOP Here.  Our SQL project will create our project stuff
+
+
+-------------------------------------------------
+SQL Project Setup
+1- Install VS CE / update
+2- 
+
+
+
+
 Python Project Setup
 https://docs.python-guide.org/writing/structure/
 
