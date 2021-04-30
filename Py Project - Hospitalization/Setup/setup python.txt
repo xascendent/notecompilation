@@ -1,3 +1,19 @@
+Apps needed:
+Docker
+VS 2019 CE 
+Git 
+GitHub 
+Azure Data studio 
+tortoiseGit 
+VSCode
+-----------------------------------------------
+
+Projects:
+-> Master Data Database/Warehouse
+-> Hospitalizations Warehouse
+
+-> Hospitalizations ETL? most likely not needed
+
 -----------------------------------------------
 CREATE REPOS
 
@@ -48,9 +64,16 @@ docker run --name localSqlDev -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=FahimIsGod!' -p
 
 
 -------------------------------------------------
-SQL Project Setup
+VS SQL Project Setup/Installer
 1- Install VS CE / update
-2- 
+2- Install Data Tools if not installed (under tools and features / Data storage and processing)
+
+
+-------------------------------------------------
+New DB Project Hospitalizations
+1- VS 2019 new project: SQL Server Database Project 
+2- we need to create the project in our hospitalizations DB Git location
+
 
 
 
