@@ -1,0 +1,6 @@
+1- Goto GitHub
+2- Goto the project and make sure your on the development branch
+3- create new pull request leave base branch main and compare: development
+4- Merge pull request since i don't have anyone helping 
+5- Leave the branch since were still working on it.
+6- Create a tag on main 

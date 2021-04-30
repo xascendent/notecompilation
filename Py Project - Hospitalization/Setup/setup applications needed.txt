@@ -1,0 +1,90 @@
+Apps needed:
+Docker (see steps 1 and 2)
+GitHub (see steps 3 and 4)
+VS 2019 CE (see step 5)
+
+Git 
+Azure Data studio 
+tortoiseGit 
+VSCode
+Live Email account
+
+STEP 1
+-------------------------------------------------
+Docker Project Setup
+1- Install docker (if not already done) / update
+2- Goto : https://hub.docker.com/_/microsoft-mssql-server  and copy the pull command
+3- open Powershell as admin 
+4- paste the pull command from docker
+5- in powershell run : 
+docker run --name localSqlDev -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=FahimIsGod!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+6- go back to the docker app and you should now see localSqlDev running
+7- connect SSMS to the instance (in our case lets use azure studio) / if not installed install and update
+8- Create a new connection to our docker instance on localhost
+
+STEP 2
+-------------------------------------------------
+SQL Server Project Setup
+1- Launch SSMS and connect to the docker image that was created in "Docker Project Setup"
+2- Open up the Management Folder
+3- Click then Right click on Database Mail and pick configure
+4- Select Option 1
+5- Profile Name (what it will show as in SQL ) I picked localhostDevEmail then click Add for SMTP accounts
+6- In the Account screen I added:
+    Account Name : johnbrumett
+    Outgoing SMTP:
+    email johnbrumett@hotmail.com   (live if it's a new account mine is WAY old)
+    Display Name: Docker Dev Server (this is what will show as the from when you recieve an email)
+    Server Name: smtp.live.com  Port: 587
+    select "this server requires a secure connection"
+    select Basic Authentication
+        user name: johnbrumett@hotmail.com (live if its a new account)
+        password: YOUR password to log into the mail box
+    Then save it
+7- click on database mail and select send test email
+    Send to another email account I did my gmail left everything else as default and sent
+8- Check the other account and see if got the email
+
+
+Step 3
+-----------------------------------------------
+CREATE REPOS
+
+Create the Repo to work from (Python)
+
+1- Create new Repo in git hub : ETL Heal Hospitalizations
+2- In GitHub click on the main branch dropdown and create a new branch : called development and click the create button 
+3- we will pull the development branch to our local
+
+
+
+Create the database repo to work from  (Sql)
+
+1- Create new Repo in git hub : DB Heal Hospitalizations Warehouse
+2- In GitHub click on the main branch dropdown and create a new branch : called development and click the create button 
+3- we will pull the development branch to our local
+
+Step 4
+-----------------------------------------------
+Project Folder Setup
+
+1- create a new folders in root called:
+Archive
+Landing
+Quarantine
+
+2- in the landing project add our example csv file 
+3- in the Archive add a file called PROCESSED FILES ONLY.info
+3- in the Quarantine add a file called FAILED FILES ONLY.info
+
+4- and push the changes to git hub using tortoiseGit : goto switch/checkout and in the branch change to development
+5- now it should say development under the Git Commit -> development   it should not say main 
+6- write a commit statement and push local branch should be development and the remote should be development
+7- goto github and cheeck the project NOTHING should be under main other than default project stuff.  evertyhing is under development
+
+
+Step 5
+-------------------------------------------------
+VS SQL Project Setup/Installer
+1- Install VS CE / update
+2- Install Data Tools if not installed (under tools and features / Data storage and processing)

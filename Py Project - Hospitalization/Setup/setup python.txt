@@ -1,80 +1,12 @@
-Apps needed:
-Docker
-VS 2019 CE 
-Git 
-GitHub 
-Azure Data studio 
-tortoiseGit 
-VSCode
------------------------------------------------
-
-Projects:
--> Master Data Database/Warehouse
--> Hospitalizations Warehouse
-
--> Hospitalizations ETL? most likely not needed
-
------------------------------------------------
-CREATE REPOS
-
-Create the Repo to work from (Python)
-
-1- Create new Repo in git hub : ETL Heal Hospitalizations
-2- In GitHub click on the main branch dropdown and create a new branch : called development and click the create button 
-3- we will pull the development branch to our local
 
 
 
-Create the database repo to work from  (Sql)
-
-1- Create new Repo in git hub : DB Heal Hospitalizations
-2- In GitHub click on the main branch dropdown and create a new branch : called development and click the create button 
-3- we will pull the development branch to our local
 
 
------------------------------------------------
-Project Folder Setup
 
-1- create a new folders in root called:
-Archive
-Landing
-Quarantine
-
-2- in the landing project add our example csv file 
-3- in the Archive add a file called PROCESSED FILES ONLY.info
-3- in the Quarantine add a file called FAILED FILES ONLY.info
-
-4- and push the changes to git hub using tortoiseGit : goto switch/checkout and in the branch change to development
-5- now it should say development under the Git Commit -> development   it should not say main 
-6- write a commit statement and push local branch should be development and the remote should be development
-7- goto github and cheeck the project NOTHING should be under main other than default project stuff.  evertyhing is under development
-
--------------------------------------------------
-Docker Project Setup
-1- Install docker (if not already done) / update
-2- Goto : https://hub.docker.com/_/microsoft-mssql-server  and copy the pull command
-3- open Powershell as admin 
-4- paste the pull command from docker
-5- in powershell run : 
-docker run --name localSqlDev -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=FahimIsGod!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
-6- go back to the docker app and you should now see localSqlDev running
-7- connect SSMS to the instance (in our case lets use azure studio) / if not installed install and update
-8- Create a new connection to our docker instance on localhost
-9- STOP Here.  Our SQL project will create our project stuff
 
 
 -------------------------------------------------
-VS SQL Project Setup/Installer
-1- Install VS CE / update
-2- Install Data Tools if not installed (under tools and features / Data storage and processing)
-
-
--------------------------------------------------
-New DB Project Hospitalizations
-1- VS 2019 new project: SQL Server Database Project 
-2- we need to create the project in our hospitalizations DB Git location
-
-
 
 
 

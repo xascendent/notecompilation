@@ -1,0 +1,19 @@
+1- Setup Env 
+x2- Project 1 - Create Hospitalizations Warehouse
+    x- sql project
+    x- sends out emails when issues happen
+    x- stores data with a mapping value if the value is found in master data 
+    x- stores data when mapping value is not found in master data ** Bonus pulls data from a website? using python 
+    x- raw data schema to load tables with sproc and remove raw data schema 
+    x- ref table with email templates
+    - ?might need a email to users table maybe? This would be loaded in with dev folder sproc data 
+    x- needs unit test
+3- Project 2 - Create Master Data Warehouse
+    - sql project 
+    - raw data schema to load ICD10 codes 
+    - ref tables for codes
+4- Project 3 - Python Load csv file and use project 1 and 2 warehouses.  Also has to move files from landing to archive or Quarantine folder
+    SEE Bonus in Project 1 website 
+5- Run Project 3 thru sonarCube for issues 
+6- Create a Dag with the python project for AirFlow 
+7- BONUS Jenkins deployments*** for AirFlow
