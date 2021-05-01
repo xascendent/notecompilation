@@ -1,4 +1,4 @@
-1- Setup Env 
+x1- Setup Env 
 x2- Project 1 - Create Hospitalizations Warehouse
     x- sql project
     x- sends out emails when issues happen
@@ -8,10 +8,10 @@ x2- Project 1 - Create Hospitalizations Warehouse
     x- ref table with email templates
     - ?might need a email to users table maybe? This would be loaded in with dev folder sproc data 
     x- needs unit test
-3- Project 2 - Create Master Data Warehouse
-    - sql project 
-    - raw data schema to load ICD10 codes 
-    - ref tables for codes
+x3- Project 2 - Create Master Data Warehouse
+    x- sql project 
+    x- raw data schema to load ICD10 codes 
+    x- ref tables for codes
 4- Project 3 - Python Load csv file and use project 1 and 2 warehouses.  Also has to move files from landing to archive or Quarantine folder
     SEE Bonus in Project 1 website 
 5- Run Project 3 thru sonarCube for issues 
