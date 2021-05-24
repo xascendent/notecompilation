@@ -1,0 +1,11 @@
+https://stackoverflow.com/questions/57460393/the-docker-client-must-be-run-elevated-to-connect
+
+https://github.com/docker/for-win/issues/8204
+
+https://github.com/docker/for-win/issues/5919
+
+https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers
+
+https://docs.microsoft.com/en-us/windows/wsl/install-manual  **install a linux distro and see if that works!
+ 
+https://answers.microsoft.com/en-us/insider/forum/insider_wintp-insider_install-insiderplat_pc/wsl-2-installing-linux-failed-error-code/bae391d1-4215-4d93-b0c4-3d96404a7c74  *this solved the linux distro issue
