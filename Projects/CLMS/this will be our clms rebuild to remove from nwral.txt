@@ -1,0 +1,48 @@
+steps.
+
+1- ng n clms--style=scss
+2- ng serve   //just to make sure it loads
+3- ng add @angular/material //add materials pink and defaults
+4- add folders
+adding folders
+under src / app  ADD THESE:
+core
+features
+shared
+
+under src / app / core ADD THESE:
+components
+enums
+global
+models
+services
+utils
+validators
+
+under src / app / shared  ADD THESE:
+material
+
+
+5- add materials main app.module.ts
+Add our material.ts file to this materail shared folder  app.module.ts
+
+
+6- Add our new mod to the master
+	1- Open app.module.ts file and add our materialModule
+	import { MaterialModule } from '../shared/material/material';
+	imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
+  ],
+
+7- lets see if it works
+open app.compoent.html 
+1- delete everything but the router-outlet tags and add
+<button mat-stroked-button color="warn">I'm a Material Button!</button>
+compile and it should show.. delete after that
+
+8 - lets add our navbar
+src / app / core / components
+ng g c navbar
