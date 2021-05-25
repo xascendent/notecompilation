@@ -1,0 +1,17 @@
+TDD
+-Create two new folders one call src and test
+-in the test folder create a file called test_unittest.py and import pytest NOTE! the file MUST start with the test_
+-Run the file in test_unittest.py and you should get an error “no module name pytest”
+-in term : py -m pip install pytest
+-now cd into the test folder
+type: pytest  “should get no tests ran”
+-add this to the code:
+def inc(x) : 
+return x + 1
+
+def test_answer():
+print(‘hi’)
+assert inc(3) == 5
+
+
+- now run you should get a failed

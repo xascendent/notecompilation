@@ -1,0 +1,10 @@
+Start a new python solution in VSCode
+1- Create the folder of the project
+2- New VS Code window
+3- Setup a vscode for pyenv
+
+    - Open a new term in the peroject
+    - check the python ver in the term: py —version *if nothing then install
+    - Now set the interpreter (intellisence). Ctrl + shift + P and type “python:select interpreter”
+    - As a best practice among Python devs is to avoid installing packages into a global interpreter env.  Instead use a project-specific virtual env.  Such isolation reduces many complications that arise from conflicting package versions.
+    - To make a virtEvn in the term window type py -3 -m venv .venv *vs code will ask you to make a workspace folder say yes.  2 folders will be created on for the vscode project and on .venv for python

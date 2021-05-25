@@ -1,0 +1,10 @@
+Init project (powershell)
+
+- CD into project
+- Add .ignore file
+- git init will create a .git file
+- git add - - all *no space
+- git commit -m “init commit”
+- git status *If anything is waiting for committing
+- *if pushing to origin : git remote add origin URL
+- git push -u origin master
