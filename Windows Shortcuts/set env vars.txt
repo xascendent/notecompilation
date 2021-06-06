@@ -1,0 +1,6 @@
+1- go into the folder that you need to set the env var and type in cmd in front of the path
+2- in the command line: setx <NAMEOFTHEVAR> <Path of app>
+so example: setx PYSPARK_PYTHON C:\Users\john\python 
+
+
+3- Check env by echo %PYSPARK_PYTHON%  you will need to do this after you close out.
