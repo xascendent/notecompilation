@@ -1,0 +1,4 @@
+1- download python from: https://www.python.org/downloads/  ( add python to pathing )
+2- i disabled the 250 char len for pathing ( python installer asked )
+3- i launched powershell and typed py --version ( i'm running 3.9.5 )
+4- download and install the python ext from MS: https://marketplace.visualstudio.com/items?itemName=ms-python.python

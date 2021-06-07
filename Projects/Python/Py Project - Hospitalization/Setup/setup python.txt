@@ -1,20 +1,16 @@
-
-
-
-
-
-
-
-
--------------------------------------------------
-
-
-
 Python Project Setup
 https://docs.python-guide.org/writing/structure/
 
-1- In our project (python) create a new folder called hospitalizationsmod
-2- under hospitalizationsmod create: 
-    hospitalizations (this will be our master python project)
-    test (this will be our master testing project for the main project)
+1- Create new Root folder called: heal_hospitalizations_mod  use samplemod as example: C:\Users\jbrumett\Documents\_personal\Python\samplemod
+2- Create docs folder, tests, heal_hospitalizations
+3- Under tests Create test_data
+4- Open VSCode in the root and a new term.  (only cont IF the Setup Rig for Python step is complete)
 
+Then:
+
+
+    - Open a new term in the project
+    - check the python ver in the term: py —version *if nothing then install
+    - Now set the interpreter (intellisence). Ctrl + shift + P and type “python:select interpreter”
+    - As a best practice among Python devs is to avoid installing packages into a global interpreter env.  Instead use a project-specific virtual env.  Such isolation reduces many complications that arise from conflicting package versions.
+    - To make a virtEvn in the term window type py -3 -m venv .venv *vs code will ask you to make a workspace folder say yes.  2 folders will be created on for the vscode project and on .venv for python
