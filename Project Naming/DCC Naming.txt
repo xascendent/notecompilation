@@ -1,0 +1,56 @@
+SQL:
+
+<Network>_<project Master>
+
+so for heal Resolve hospitalization it would 
+
+Heal_Hospitalization   (heal and hospitalization are caps)
+
+
+The project naming for Bit bucket would bucket
+
+Heal Software is the main network project repo listings
+then it's <projectName>_<TechAbbr>_<project>_<SQL WAREHOUSE TYPE>
+
+Resolve_SQL_Hospitalizations_WHS  "Data warehouse SQL"
+Resolve_SQL_Hospitalizations_STG  "Staging Intake warehouse SQL"
+Resolve_ETL_Hospitlaizations  "desc with tech used py or ssis"
+Resolve_Lib_Hospitalizations "desc with tech C#"
+Resolve_API "desc with tech C#" doesn't say hospitalization because it would be a library inside the API"
+Resolve_Pipeline "jenkins stuff"
+
+Testing:
+project name would be Heal_Hospitalizations_UnitTests
+each test would need: <RoleAbbrIFUsed>_<sprocName>_EPR (expected pass results) or EFR (expected fail results)
+so with resolve if we had an admin role it would be:
+Admin_SendEmail_EPR or Admin_SendEmail_EFR
+
+no role it would be:
+SendEmail_EPR or SendEmail_EFR
+
+SQL PROJECT:
+Schema(s):
+RAW:
+each raw load will have a pack number attached and logged to the version table.  We should use the version table for this.  That way 
+if we move to another DB it will be there.
+
+Data:
+We will no longer call data loading data.  It will now be called RAW this will be always used data
+development will be it's own schema now and only used in development
+data will be warehouse data tables.
+
+STG:
+Staging tables 
+
+Any tickets will be:
+<Network> / <Project> : <do something>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+(-b = branch followed by the name to pull)
+
+git clone -b development https://github.com/xascendent/ETL-Heal-Hospitalizations.git
+
