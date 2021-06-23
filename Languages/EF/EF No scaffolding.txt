@@ -1,0 +1,83 @@
+SETUP
+-------------------
+1- Create a new .net 5 class library project  (this will be called EF_POCO_Example)
+2- Delete the class1.cs file
+3- create a new solution in the project for unit tests  (EF_POCP_Example_Tests)
+4- add the EF_POCO_Example project to the dependcies of our test 
+5- Add Nuget EF to the EF_POCO_Example project *add to both solutions
+    - Microsoft.EntityFrameworkCore
+    - Microsoft.EntityFrameworkCore.SqlServer
+    - Microsoft.EntityFrameworkCore.Tools    *not needed in test project
+
+
+Project SETUP
+------------------
+1- Create these folders:
+    Contexts
+    Models
+    Repositories
+    Services
+    Interfaces
+
+PROJECT CONTEXT SETUP
+------------------
+1- Create the Context
+    -1 create a new class in the context dir
+    -2 call the class <ProjectName>Context make the class public and extend the class with  : DbContext
+    -3 add this using: using Microsoft.EntityFrameworkCore;
+    -4 add these methods
+    ctor (DbContextOptions<YOURCLASSNAMEContext> options) : base(options) { } //you will have to clean up after this insert
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    -5 NOTE any class you want to populate from a db will go into this class and it will look like:
+        public virtual DbSet <RawSqlJson> GetRequestedUserAccount { get; set; }  // NOTE the RawSqlJson is a model that a sproc returns
+
+PROJECT POCO SETUP
+-----------------
+1- create a public class in the model folder
+2- add the namesapce using System.ComponentModel.DataAnnotations;
+3- add a [key] to a public getter/setter and import the model into the PROJECT CONTEXT STEUP using the virtual DBSet<>
+
+PROJECT SETUP INTERFACE
+-----------------
+1- Create a new interface make it public include the model as a return the interface should be a Repostory Name (make public). I will make a list<model> return type 
+
+PROJECT SETUP REPOSTORY
+------------------
+1- Create a new class and use the Interface created above (make public)
+2- Now the only trickey part. we need to create a Context for the application to use. 
+    1- start by ctor and pass in the CONEXT as a new context using the above context 
+    EXAMPLE 
+    using org.tic.redcap.repository.Contexts;
+        private readonly RepositoryContext _repositoryContext;
+        public ApplicationMasterRepository(RepositoryContext repositoryContext)
+        {
+            _repositoryContext = repositoryContext;
+        }
+3- add these two using statements
+    using Microsoft.Data.SqlClient;
+    using Microsoft.EntityFrameworkCore;
+4- Now we can talk to the db lets create an example getPoolInfo
+        public List<ApplicationPoolInformation> GetPoolInformation(int applicationPoolId)  //this is in the interface
+        {
+            try
+            {
+                SqlParameter pSamAccountName = new SqlParameter("@ApplicationPoolId", applicationPoolId);  //will not work without the using above
+                return _repositoryContext.GetApplicationPoolInformation.FromSqlRaw("[model].[Clms_Governance_LoginRequest] @samAccountName", pSamAccountName).ToList();  //will not work with out the using above              
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Expected user issue");
+            }
+        }
+
+
+PROJECT SETUP Service and it's interface
+----------------------------------
+1- 
+
+
+

@@ -1,0 +1,14 @@
+0- get the api key. log into sonatype click on the user and click access API key
+1- download nuget.exe (mine is in c:\tools\)
+2- right click on the project library go to properties and click on package
+3- change the package ver number
+4- rebuild the project and then pack (set to release and you may have to)
+5- go to the project folder and go to the release bin and find the nupkg 
+6- open powershell. just click in the location bar overwrite everything and type in powershell (it will open a powershell in that folder)
+7- in powershell: c:\tools\nuget.exe push "DCC.Clms.Test.1.0.0.nupkg" 00C9841845A7536A7744BBDA41830FA1 -Source http://testjbrumett1:8081/nuget
+note: " is not needed. we need to just put in the nupkg project name then key and source which will be https://nexus.utahdcc.org/repository/nuget-snapshots
+
+
+so for goverance with my sonatype key is:
+
+c:\tools\nuget.exe push org.nedarc.authentication.1.0.1.nupkg  896eb5e8-f691-3f03-ab78-f1f0f76e9dab -Source https://nexus.utahdcc.org/repository/nuget-snapshots
