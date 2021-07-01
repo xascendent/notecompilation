@@ -75,9 +75,31 @@ PROJECT SETUP REPOSTORY
         }
 
 
-PROJECT SETUP Service and it's interface
+Now create service and it's calls
+
+
+PROJECT SETUP Unit test
 ----------------------------------
-1- 
+1- create a new Helpers folder
+2- In helpers create a new <AppName>DbContext> class
+3- add a link to the (mainproject Context) to the using statements
+4- now create a public class of that context with a get 
+    example: public RepositoryContext testingDbContext { get; }
+5- ctor and add:
+     var options = CreateNewContextOptions();
+            testingDbContext = new RepositoryContext(options);
+6- create the builder class 
+    example:
+        private DbContextOptions<RepositoryContext> CreateNewContextOptions()
+        {
+            var builder = new DbContextOptionsBuilder<RepositoryContext>();
+            builder.UseSqlServer("Server=localhost;Database=TIC_REDCap_Projects;user id=sa;password=FahimIsGod!");
+            return builder.Options;
+        }
+
+7- Now in the unit test class ctor and add the context
+example: _applicationMasterRepository = new ApplicationMasterRepository(new TestRepositoryContext().testingDbContext);
+
 
 
 

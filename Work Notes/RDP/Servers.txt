@@ -6,6 +6,7 @@ dccd-webpecarn1
 dccd-webcpccrn1
 testjbrumett1
 dccd-webnedarc1
-dccd-web1 
+dccd-web1  covid
 
 
+ https://utahcovidtrials.utahdcc.org/Login.aspx

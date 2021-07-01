@@ -11,4 +11,7 @@ note: " is not needed. we need to just put in the nupkg project name then key an
 
 so for goverance with my sonatype key is:
 
-c:\tools\nuget.exe push org.nedarc.authentication.1.0.1.nupkg  896eb5e8-f691-3f03-ab78-f1f0f76e9dab -Source https://nexus.utahdcc.org/repository/nuget-snapshots
+c:\tools\nuget.exe push org.tic.heal.repository.1.0.4.nupkg  896eb5e8-f691-3f03-ab78-f1f0f76e9dab -Source https://nexus.utahdcc.org/repository/nuget-snapshots
+
+
+redcap tic_resolve_bpi_repository
