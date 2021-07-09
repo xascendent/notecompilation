@@ -1,0 +1,24 @@
+dccd-checkbox1
+dcct-checkbox1
+dccp-checkbox1
+
+
+URLs:
+dev:  https://devcb.utahdcc.org/admin/
+test: https://testcb.utahdcc.org/admin
+
+Prod isn't checkbox 7 yet.  currently its : https://cb.utahdcc.org/surveys/
+
+
+Backups: 
+- once in prod only prod will be backedup
+- test and dev never backuped..
+
+while in testing in dev spike back the dev checkbox instance 
+
+
+
+
+
+https://devcb.utahdcc.org/api/repsonseId = 1234856  { "JSON":"blah" } --//devcb.utahdcc.org/api/repsonseId
+HASH URL 
